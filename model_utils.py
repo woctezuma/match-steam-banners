@@ -1,6 +1,6 @@
 import numpy as np
-from keras.applications.mobilenet_v3 import MobileNetV3Small
-from keras.applications.mobilenet_v3 import preprocess_input
+from tensorflow.keras.applications import MobileNetV3Small
+from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 from keras.preprocessing.image import img_to_array
 
 
