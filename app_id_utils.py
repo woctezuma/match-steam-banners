@@ -1,0 +1,58 @@
+import os
+from pathlib import Path
+
+from data_utils import get_data_path, get_image_data_path, get_image_extension
+
+
+def app_id_to_image_filename(app_id, is_horizontal_banner=False):
+    image_data_path = get_image_data_path(is_horizontal_banner)
+
+    image_filename = image_data_path + str(app_id) + get_image_extension()
+
+    return image_filename
+
+
+def image_filename_to_app_id(image_filename):
+    base_name = os.path.basename(image_filename)
+
+    app_id = base_name.strip(get_image_extension())
+
+    return app_id
+
+
+def list_app_ids(is_horizontal_banner=False):
+    image_data_path = get_image_data_path(is_horizontal_banner)
+
+    image_filenames = Path(image_data_path).glob("*" + get_image_extension())
+
+    app_ids = [image_filename_to_app_id(filename) for filename in image_filenames]
+
+    app_ids.sort(key=int)
+
+    return app_ids
+
+
+def get_frozen_app_ids_filename():
+    frozen_app_ids_filename = get_data_path() + "frozen_app_ids.txt"
+
+    return frozen_app_ids_filename
+
+
+def freeze_app_ids(app_ids):
+    with open(get_frozen_app_ids_filename(), "w", encoding="utf8") as f:
+        for app_id in app_ids:
+            f.write("{}\n".format(app_id))
+
+    return
+
+
+def get_frozen_app_ids(is_horizontal_banner=False):
+    try:
+        with open(get_frozen_app_ids_filename(), "r", encoding="utf8") as f:
+            frozen_app_ids = set([app_id.strip() for app_id in f.readlines()])
+    except FileNotFoundError:
+        print("Creating {}".format(get_frozen_app_ids_filename()))
+        frozen_app_ids = list_app_ids(is_horizontal_banner=is_horizontal_banner)
+        freeze_app_ids(frozen_app_ids)
+
+    return frozen_app_ids
