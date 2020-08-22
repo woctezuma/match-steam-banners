@@ -21,6 +21,8 @@ It is based on the best practices observed in my previous repository [`download-
 -   Install the required packages:
 
 ```bash
+python -m pip install --upgrade pip
+pip install --upgrade cython
 pip install -r requirements.txt
 ```
 
@@ -33,7 +35,7 @@ It consists of 19,049 **vertical** Steam banners resized from 300x450 to 256x256
 
 ## Usage
 
-### Features
+### 1. Features
 
 First, compute and store the 1024 features corresponding to each banner:
 
@@ -41,7 +43,7 @@ First, compute and store the 1024 features corresponding to each banner:
 python build_feature_index.py
 ```
 
-### Similar games
+### 2. Similar games
 
 Find the **10** most similar store banners to curated query appIDs:
 
@@ -50,23 +52,22 @@ python retrieve_similar_features.py
 ```
 
 NB: by default, query appIDs consist of:
--   the top 100 most played games during the past two weeks, according to SteamSpy,
+-   the top 100 most played games during the past two weeks, according to [SteamSpy][steamspy-api],
 -   a few manually curated games.
 
-### Unique games
+### 3. Unique games
 
-Find the **one** most similar store banner to all appIDs available on the store:  
+Find the **one** most similar store banner to all appIDs available on the store, then display the most unique games:
 
 ```bash
 python find_unique_games.py
 ```
 
-NB: the most *unique* games are the ones which are the most dissimilar to others, so with the lowest similarity score to
-their first neighbor.
+NB: *unique* games are ones which are the most dissimilar (low similarity score) to others to their first neighbor.
 
 ## Results
 
-Results obtained with ([MobileNet v3][keras-mobilenet]) are shown [on the Wiki][my-wiki].
+Results obtained with [MobileNet v3][keras-mobilenet] are shown [on the Wiki][my-wiki].
 
 ## References
 
@@ -96,4 +97,4 @@ Results obtained with ([MobileNet v3][keras-mobilenet]) are shown [on the Wiki][
 [colab-notebook-download]: <https://github.com/woctezuma/google-colab/blob/master/download_steam_banners.ipynb>
 [my-wiki]: <https://github.com/woctezuma/match-steam-banners/wiki>
 [screenshot-repository]: <https://github.com/woctezuma/download-steam-screenshots>
-
+[steamspy-api]: <https://github.com/woctezuma/steamspypi>
