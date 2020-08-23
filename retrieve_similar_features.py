@@ -1,3 +1,4 @@
+from pathlib import Path
 from time import time
 
 import numpy as np
@@ -6,6 +7,7 @@ from sklearn.neighbors import NearestNeighbors
 
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
 from data_utils import get_label_database_filename
+from download_utils import download_query_image
 from model_utils import (
     get_target_model_size,
     load_keras_model,
@@ -24,6 +26,12 @@ def retrieve_similar_features(
     num_neighbors=10,
 ):
     image_filename = app_id_to_image_filename(query_app_id, is_horizontal_banner)
+    if not Path(image_filename).is_file():
+        download_query_image(
+            query_app_id,
+            is_horizontal_banner=is_horizontal_banner,
+            output_filename=image_filename,
+        )
     image = load_img(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model)
 

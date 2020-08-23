@@ -1,3 +1,4 @@
+requests
 tf-nightly
 cython==0.29.21
 numpy==1.18.5
