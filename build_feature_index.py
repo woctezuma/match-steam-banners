@@ -30,7 +30,9 @@ def build_feature_index(is_horizontal_banner=False):
 
     start = time()
 
-    for (counter, app_id) in enumerate(sorted(app_ids, key=int)):
+    app_ids = sorted(app_ids, key=int)
+
+    for (counter, app_id) in enumerate(app_ids):
 
         # Avoid re-computing values of Y_hat which were previously computed and saved to disk, then recently loaded
         if any(Y_hat[counter, :] != 0):
