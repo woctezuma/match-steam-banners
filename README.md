@@ -88,7 +88,7 @@ Direct links to similarity results are available below:
 -   for each unique game, display [the 1 most similar game](https://github.com/woctezuma/match-steam-banners/wiki/Unique-Games),
 -   a [grid of unique games](https://github.com/woctezuma/match-steam-banners/wiki/Grid-of-Unique-Games).
 
-Unique games seem to have in common that their banner contains mostly a texture and a tile, without any large character, item or shape.
+Unique games seem to have in common that their banner contains mostly a texture and a title, without any large character, item or shape.
 
 For instance:
 ![Unique vertical banners](https://github.com/woctezuma/match-steam-banners/wiki/img/unique_games.jpg)
