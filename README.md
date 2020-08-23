@@ -35,6 +35,8 @@ It consists of 19,049 **vertical** Steam banners resized from 300x450 to 256x256
 
 ## Usage
 
+Nb: a [Colab notebook][match_steam_banners-notebook] is available in my [`colab`][colab-branch] branch.
+
 ### 1. Features
 
 First, compute and store the 1024 features corresponding to each banner:
@@ -122,3 +124,6 @@ For instance:
 [my-wiki]: <https://github.com/woctezuma/match-steam-banners/wiki>
 [screenshot-repository]: <https://github.com/woctezuma/download-steam-screenshots>
 [steamspy-api]: <https://github.com/woctezuma/steamspypi>
+
+[colab-branch]: <https://github.com/woctezuma/match-steam-banners/tree/colab>
+[match_steam_banners-notebook]: <https://colab.research.google.com/github/woctezuma/match-steam-banners/blob/colab/notebooks/match_steam_banners.ipynb>
