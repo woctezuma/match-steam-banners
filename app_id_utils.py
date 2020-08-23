@@ -54,9 +54,9 @@ def load_frozen_app_ids(input_file_name=None):
         input_file_name = get_frozen_app_ids_filename()
 
     with open(input_file_name, "r", encoding="utf8") as f:
-        frozen_app_ids = set([app_id.strip() for app_id in f.readlines()])
-
-    frozen_app_ids = list(frozen_app_ids)
+        # Do not convert to a set object, or any other conversion, because we want to keep the list order as it is.
+        # Just read the list from the file. That is all there is to do. Otherwise, appIDs will be scrambled!
+        frozen_app_ids = [app_id.strip() for app_id in f.readlines()]
 
     return frozen_app_ids
 
