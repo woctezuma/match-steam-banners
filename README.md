@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 Data is available in [`download-steam-banners-data/`](https://github.com/woctezuma/download-steam-banners-data).
 
-The most recent data snapshot was downloaded in August 2020 with [this Colab notebook][colab-notebook-download].
+The most recent data snapshot was downloaded in August 2020 with [this Colab notebook][download_steam_banners].
 It consists of 19,049 **vertical** Steam banners resized from 300x450 to 256x256 resolution.
 
 ## Usage
@@ -94,7 +94,7 @@ Results obtained with [MobileNet v3][keras-mobilenet] are shown [on the Wiki][my
 
 [my-previous-repository]: <https://github.com/woctezuma/download-steam-banners>
 [keras-mobilenet]: <https://github.com/keras-team/keras-applications/blob/master/keras_applications/mobilenet_v3.py>
-[colab-notebook-download]: <https://github.com/woctezuma/google-colab/blob/master/download_steam_banners.ipynb>
+[download_steam_banners]: <https://colab.research.google.com/github/woctezuma/google-colab/blob/master/download_steam_banners.ipynb>
 [my-wiki]: <https://github.com/woctezuma/match-steam-banners/wiki>
 [screenshot-repository]: <https://github.com/woctezuma/download-steam-screenshots>
 [steamspy-api]: <https://github.com/woctezuma/steamspypi>
