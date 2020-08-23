@@ -35,12 +35,17 @@ def print_unique_games(sim_dict, unique_app_ids, game_names=None):
     if game_names is None:
         game_names = load_game_names_from_steamspy()
 
+    num_elements_displayed = 1
+
     for query_app_id in unique_app_ids:
         matched_app_id = sim_dict[query_app_id]["app_id"]
         matched_app_id_as_list = list(matched_app_id)
 
         print_ranking_for_app_id(
-            query_app_id, matched_app_id_as_list, game_names=game_names
+            query_app_id,
+            matched_app_id_as_list,
+            game_names=game_names,
+            num_elements_displayed=num_elements_displayed,
         )
 
     return
