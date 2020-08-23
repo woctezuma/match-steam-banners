@@ -47,10 +47,7 @@ def build_feature_index(is_horizontal_banner=False):
 
         if (counter % 1000) == 0:
             print("{}/{} in {:.2f} s".format(counter, num_games, time() - start))
-
-            saving_start = time()
             np.save(feature_filename, Y_hat)
-            print("Elapsed time (saving): {:.2f} s".format(time() - saving_start))
 
     np.save(feature_filename, Y_hat)
 
