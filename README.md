@@ -69,6 +69,28 @@ NB: *unique* games are ones which are the most dissimilar (low similarity score)
 
 Results obtained with [MobileNet v3][keras-mobilenet] are shown [on the Wiki][my-wiki].
 
+The linked pages contain a lot of images and might be slow to load depending on your Internet bandwidth.
+
+### Similar games
+
+Direct links to similarity results are available below:
+-   for each game, find [the 10 most similar games](https://github.com/woctezuma/match-steam-banners/wiki/Benchmark-top100).
+
+For instance:
+![Similar vertical (Call of Duty)](https://github.com/woctezuma/match-steam-banners/wiki/img/similar_cod.jpg)
+
+Or:
+![Similar vertical banners (Half-Life)](https://github.com/woctezuma/match-steam-banners/wiki/img/similar_hl.jpg)
+
+### Unique games
+
+Direct links to similarity results are available below:
+-   for each unique game, display [the 1 most similar game](https://github.com/woctezuma/match-steam-banners/wiki/Unique-Games),
+-   a [grid of unique games](https://github.com/woctezuma/match-steam-banners/wiki/Grid-of-Unique-Games).
+
+For instance:
+![Unique vertical banners](https://github.com/woctezuma/match-steam-banners/wiki/img/unique_games.jpg)
+
 ## References
 
 -   [`download-steam-banners`][my-previous-repository]: retrieve Steam games with similar store banners,
