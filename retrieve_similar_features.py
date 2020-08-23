@@ -1,5 +1,4 @@
 from pathlib import Path
-from time import time
 
 import numpy as np
 from keras.preprocessing.image import load_img
@@ -35,12 +34,8 @@ def retrieve_similar_features(
     image = load_img(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model)
 
-    start = time()
-
     # Sci-Kit Learn with cosine similarity. Reshape data as it contains a single sample.
     _, matches = knn.kneighbors(query_des.reshape(1, -1), n_neighbors=num_neighbors)
-
-    print("Elapsed time: {:.2f} s".format(time() - start))
 
     app_ids = get_frozen_app_ids()
 
