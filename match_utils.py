@@ -1,3 +1,5 @@
+# Objective: find **the** nearest neighbor of each feature vector (encoding a banner) in the database.
+
 from time import time
 
 import numpy as np
