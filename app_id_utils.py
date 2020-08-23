@@ -27,7 +27,7 @@ def list_app_ids(is_horizontal_banner=False):
 
     app_ids = [image_filename_to_app_id(filename) for filename in image_filenames]
 
-    app_ids.sort(key=int)
+    app_ids = sorted(app_ids, key=int)
 
     return app_ids
 
