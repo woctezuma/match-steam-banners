@@ -39,7 +39,7 @@ def print_unique_games(sim_dict, unique_app_ids, game_names=None):
 
     for query_app_id in unique_app_ids:
         matched_app_id = sim_dict[query_app_id]["app_id"]
-        matched_app_id_as_list = list(matched_app_id)
+        matched_app_id_as_list = [matched_app_id]
 
         print_ranking_for_app_id(
             query_app_id,
