@@ -38,18 +38,30 @@ def get_frozen_app_ids_filename():
     return frozen_app_ids_filename
 
 
-def freeze_app_ids(app_ids):
-    with open(get_frozen_app_ids_filename(), "w", encoding="utf8") as f:
+def freeze_app_ids(app_ids, output_file_name=None):
+    if output_file_name is None:
+        output_file_name = get_frozen_app_ids_filename()
+
+    with open(output_file_name, "w", encoding="utf8") as f:
         for app_id in app_ids:
             f.write("{}\n".format(app_id))
 
     return
 
 
+def load_frozen_app_ids(input_file_name=None):
+    if input_file_name is None:
+        input_file_name = get_frozen_app_ids_filename()
+
+    with open(input_file_name, "r", encoding="utf8") as f:
+        frozen_app_ids = set([app_id.strip() for app_id in f.readlines()])
+
+    return frozen_app_ids
+
+
 def get_frozen_app_ids(is_horizontal_banner=False):
     try:
-        with open(get_frozen_app_ids_filename(), "r", encoding="utf8") as f:
-            frozen_app_ids = set([app_id.strip() for app_id in f.readlines()])
+        frozen_app_ids = load_frozen_app_ids()
     except FileNotFoundError:
         print("Creating {}".format(get_frozen_app_ids_filename()))
         frozen_app_ids = list_app_ids(is_horizontal_banner=is_horizontal_banner)
