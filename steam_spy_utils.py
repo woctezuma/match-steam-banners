@@ -64,7 +64,7 @@ def load_benchmarked_app_ids(append_hard_coded_app_ids=True):
         "814380",
     ]
 
-    benchmarked_app_ids = sorted(top_100_app_ids)
+    benchmarked_app_ids = sorted(top_100_app_ids, key=int)
     if append_hard_coded_app_ids:
         for app_id in set(additional_app_ids).difference(top_100_app_ids):
             benchmarked_app_ids.append(app_id)
