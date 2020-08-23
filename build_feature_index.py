@@ -31,6 +31,7 @@ def build_feature_index(is_horizontal_banner=False):
     start = time()
 
     app_ids = sorted(app_ids, key=int)
+    freeze_app_ids(app_ids)
 
     for (counter, app_id) in enumerate(app_ids):
 
@@ -49,11 +50,9 @@ def build_feature_index(is_horizontal_banner=False):
 
             saving_start = time()
             np.save(feature_filename, Y_hat)
-            freeze_app_ids(app_ids)
             print("Elapsed time (saving): {:.2f} s".format(time() - saving_start))
 
     np.save(feature_filename, Y_hat)
-    freeze_app_ids(app_ids)
 
     return
 
