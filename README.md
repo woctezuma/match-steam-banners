@@ -35,7 +35,7 @@ It consists of 19,049 **vertical** Steam banners resized from 300x450 to 256x256
 
 ## Usage
 
-Nb: a [Colab notebook][match_steam_banners-notebook] is available in my [`colab`][colab-branch] branch.
+NB: a [Colab notebook][match_steam_banners-notebook] is available in my [`colab`][colab-branch] branch.
 
 ### 1. Features
 
