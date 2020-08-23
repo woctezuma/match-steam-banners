@@ -56,6 +56,8 @@ def load_frozen_app_ids(input_file_name=None):
     with open(input_file_name, "r", encoding="utf8") as f:
         frozen_app_ids = set([app_id.strip() for app_id in f.readlines()])
 
+    frozen_app_ids = list(frozen_app_ids)
+
     return frozen_app_ids
 
 
