@@ -57,7 +57,8 @@ def print_ranking_for_app_id(
             print("\n")
 
         if rank >= num_elements_displayed:
-            print("\n")
             break
+
+    print("\n")
 
     return
