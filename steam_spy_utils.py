@@ -1,5 +1,7 @@
 import steamspypi
 
+from benchmark_utils import save_top_100_app_ids, load_top_100_app_ids_from_disk
+
 
 def load_game_names_from_steamspy():
     data = steamspypi.load()
@@ -34,10 +36,20 @@ def get_top_100_app_ids():
     return top_100_app_ids
 
 
+def load_top_100_app_ids():
+    try:
+        top_100_app_ids = load_top_100_app_ids_from_disk()
+    except FileNotFoundError:
+        top_100_app_ids = get_top_100_app_ids()
+        save_top_100_app_ids(top_100_app_ids)
+
+    return top_100_app_ids
+
+
 def load_benchmarked_app_ids(append_hard_coded_app_ids=True):
     # Reference: https://github.com/woctezuma/steam-descriptions/blob/master/benchmark_utils.py
 
-    top_100_app_ids = get_top_100_app_ids()
+    top_100_app_ids = load_top_100_app_ids()
 
     # Append hard-coded appIDs
 
@@ -58,3 +70,8 @@ def load_benchmarked_app_ids(append_hard_coded_app_ids=True):
             benchmarked_app_ids.append(app_id)
 
     return benchmarked_app_ids
+
+
+if __name__ == "__main__":
+    game_names = load_game_names_from_steamspy()
+    top_100_app_ids = load_top_100_app_ids()
