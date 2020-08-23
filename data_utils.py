@@ -57,7 +57,7 @@ def save_sim_dict(sim_dict, pooling="avg"):
     return
 
 
-def load_sim_dict(pooling="avg"):
+def load_sim_dict_from_disk(pooling="avg"):
     with open(get_unique_games_file_name(pooling=pooling), "r", encoding="utf8") as f:
         sim_dict = json.load(f)
 
