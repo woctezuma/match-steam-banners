@@ -44,7 +44,7 @@ def print_ranking_for_app_id(
     query_app_name = get_app_name(query_app_id, game_names=game_names)
     html_linked_image = get_html_linked_image(query_app_id, query_app_name)
 
-    print("Query:\n{}".format(html_linked_image))
+    print("\nQuery:\n{}".format(html_linked_image))
 
     for rank, app_id in enumerate(reference_app_id_counter, start=1):
         app_name = get_app_name(app_id, game_names=game_names)
@@ -53,6 +53,7 @@ def print_ranking_for_app_id(
         print(html_linked_image, end="")
 
         if rank >= num_elements_displayed:
+            print("\n")
             break
 
     return

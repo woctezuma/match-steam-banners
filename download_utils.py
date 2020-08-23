@@ -20,7 +20,7 @@ def download_query_image(app_id, is_horizontal_banner=False, output_filename=Non
 
     banner_url = get_banner_url(app_id, is_horizontal_banner=is_horizontal_banner)
 
-    print("Downloading banner for appID={} from {}".format(app_id, banner_url))
+    print("\nDownloading banner for appID={} from {}".format(app_id, banner_url))
 
     response_data = requests.get(url=banner_url)
 
