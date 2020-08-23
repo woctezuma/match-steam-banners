@@ -37,6 +37,6 @@ def get_banner_url(app_id, is_horizontal_banner=False):
 
 
 def get_store_url(app_id):
-    store_url = "https://store.steampowered.com/app/".format(app_id)
+    store_url = "https://store.steampowered.com/app/{}".format(app_id)
 
     return store_url
