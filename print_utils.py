@@ -52,6 +52,10 @@ def print_ranking_for_app_id(
 
         print(html_linked_image, end="")
 
+        # Display results on two rows
+        if rank == num_elements_displayed / 2:
+            print("\n")
+
         if rank >= num_elements_displayed:
             print("\n")
             break
