@@ -1,7 +1,7 @@
 from data_utils import load_sim_dict_from_disk
 from match_utils import match_all
-from print_utils import print_ranking_for_app_id
-from steam_spy_utils import load_game_names_from_steamspy
+from print_utils import print_ranking_for_app_id, get_html_linked_image
+from steam_spy_utils import load_game_names_from_steamspy, get_app_name
 
 
 def load_sim_dict(use_cosine_similarity=True, pooling="avg"):
@@ -51,6 +51,21 @@ def print_unique_games(sim_dict, unique_app_ids, game_names=None):
     return
 
 
+def print_grid_of_unique_games(unique_app_ids, game_names=None):
+    if game_names is None:
+        game_names = load_game_names_from_steamspy()
+
+    print("\n\nGrid\n\n")
+
+    for query_app_id in unique_app_ids:
+        query_app_name = get_app_name(query_app_id, game_names=game_names)
+        html_linked_image = get_html_linked_image(query_app_id, query_app_name)
+
+        print(html_linked_image)
+
+    return
+
+
 def find_unique_games(use_cosine_similarity=True, pooling="avg", num_outputs=250):
     sim_dict = load_sim_dict(
         use_cosine_similarity=use_cosine_similarity, pooling=pooling
@@ -61,6 +76,8 @@ def find_unique_games(use_cosine_similarity=True, pooling="avg", num_outputs=250
     )
 
     print_unique_games(sim_dict, unique_app_ids)
+
+    print_grid_of_unique_games(unique_app_ids)
 
     return
 
