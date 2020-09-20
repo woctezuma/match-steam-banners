@@ -31,11 +31,13 @@ pip install -r requirements.txt
 Data is available in [`download-steam-banners-data/`](https://github.com/woctezuma/download-steam-banners-data).
 
 The most recent data snapshot was downloaded in August 2020 with [this Colab notebook][download_steam_banners].
+[![Open In Colab][colab-badge]][download_steam_banners]
 It consists of 19,049 **vertical** Steam banners resized from 300x450 to 256x256 resolution.
 
 ## Usage
 
 NB: a [Colab notebook][match_steam_banners-notebook] is available in my [`colab`][colab-branch] branch.
+[![Open In Colab][colab-badge]][match_steam_banners-notebook]
 
 ### 1. Features
 
@@ -127,3 +129,5 @@ For instance:
 
 [colab-branch]: <https://github.com/woctezuma/match-steam-banners/tree/colab>
 [match_steam_banners-notebook]: <https://colab.research.google.com/github/woctezuma/match-steam-banners/blob/colab/notebooks/match_steam_banners.ipynb>
+
+[colab-badge]: <https://colab.research.google.com/assets/colab-badge.svg>
