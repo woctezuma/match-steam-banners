@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import numpy as np
-from tensorflow.keras.preprocessing.image import load_img
+from keras_utils import load_image
 from sklearn.neighbors import NearestNeighbors
 
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
@@ -31,7 +31,7 @@ def retrieve_similar_features(
             is_horizontal_banner=is_horizontal_banner,
             output_filename=image_filename,
         )
-    image = load_img(image_filename, target_size=target_model_size)
+    image = load_image(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model)
 
     # Sci-Kit Learn with cosine similarity. Reshape data as it contains a single sample.

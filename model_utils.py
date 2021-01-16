@@ -1,7 +1,6 @@
 import numpy as np
-from tensorflow.keras.applications import MobileNetV3Small
-from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
-from tensorflow.keras.preprocessing.image import img_to_array
+from keras_utils import get_model, preprocess_image_array_for_model
+from keras_utils import convert_image_to_array
 
 
 def get_target_model_size():
@@ -21,9 +20,7 @@ def load_keras_model(target_model_size=None, include_top=False, pooling="avg"):
     # Image data format: channels last
     input_shape = tuple(list(target_model_size) + [num_channels])
 
-    model = MobileNetV3Small(
-        input_shape=input_shape, include_top=include_top, pooling=pooling
-    )
+    model = get_model(input_shape=input_shape, include_top=include_top, pooling=pooling)
 
     return model
 
@@ -32,13 +29,13 @@ def label_image(image, model):
     # Reference: https://github.com/glouppe/blackbelt/
 
     # convert the image pixels to a numpy array
-    image = img_to_array(image)
+    image = convert_image_to_array(image)
 
     # reshape data for the model
     image = np.expand_dims(image, axis=0)
 
     # prepare the image for the VGG model
-    image = preprocess_input(image)
+    image = preprocess_image_array_for_model(image)
 
     # predict the probability across all output classes
     yhat = model.predict(image)

@@ -1,7 +1,7 @@
 from time import time
 
 import numpy as np
-from tensorflow.keras.preprocessing.image import load_img
+from keras_utils import load_image
 
 from app_id_utils import freeze_app_ids, list_app_ids, app_id_to_image_filename
 from data_utils import get_label_database_filename
@@ -40,7 +40,7 @@ def build_feature_index(is_horizontal_banner=False):
             continue
 
         image_filename = app_id_to_image_filename(app_id, is_horizontal_banner)
-        image = load_img(image_filename, target_size=target_model_size)
+        image = load_image(image_filename, target_size=target_model_size)
         features = convert_image_to_features(image, model)
 
         Y_hat[counter, :] = features
