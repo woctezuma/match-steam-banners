@@ -1,6 +1,6 @@
 import numpy as np
 from keras_utils import get_model, preprocess_image_array_for_model
-from keras_utils import convert_image_to_array
+from generic_utils import convert_image_to_array
 
 
 def get_target_model_size():

@@ -1,7 +1,7 @@
 from pathlib import Path
 
 import numpy as np
-from keras_utils import load_image
+from generic_utils import load_image
 from sklearn.neighbors import NearestNeighbors
 
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
