@@ -7,6 +7,6 @@ def preprocess_image_array_for_model(image_array):
     return image_array
 
 
-def get_model(input_shape, include_top, pooling):
+def get_model(input_shape, include_top=False, pooling="avg"):
     model = MobileNetV3Small(input_shape=input_shape, include_top=include_top, pooling=pooling)
     return model
