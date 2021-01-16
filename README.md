@@ -25,6 +25,7 @@ python -m pip install --upgrade pip
 pip install --upgrade cython
 pip install -r requirements.txt
 ```
+NB: Tensorflow 2 supports Python 3.5–3.8, not 3.9.
 
 ## Data
 
