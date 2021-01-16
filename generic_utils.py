@@ -1,3 +1,5 @@
+import io
+
 import numpy as np
 from PIL import Image as pil_image
 
@@ -19,7 +21,8 @@ def load_image(image_filename, color_mode="RGB", target_size=None, interpolation
     # Ensure that letters are ALL upper-case, e.g. 'RGB' instead of 'rgb'
     color_mode = color_mode.upper()
 
-    with pil_image.open(image_filename, "r") as img:
+    with open(image_filename, 'rb') as f:
+        img = pil_image.open(io.BytesIO(f.read()))
         if img.mode != color_mode:
             img = img.convert(color_mode)
 
