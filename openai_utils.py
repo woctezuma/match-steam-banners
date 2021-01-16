@@ -2,6 +2,11 @@ import clip
 import torch
 
 
+def count_num_features(model=None):
+    num_features = 512
+    return num_features
+
+
 def get_model_resolution():
     resolution = 224
     return resolution

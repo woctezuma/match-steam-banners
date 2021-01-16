@@ -5,6 +5,13 @@ from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 from generic_utils import convert_image_to_array
 
 
+def count_num_features(model=None):
+    if model is None:
+        model = get_model(input_shape=None)
+    num_features = np.product(model.output_shape[1:])
+    return num_features
+
+
 def get_model_resolution():
     resolution = 256
     return resolution

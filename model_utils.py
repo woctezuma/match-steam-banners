@@ -1,5 +1,9 @@
-# from keras_utils import get_model, get_model_resolution, label_image
-from openai_utils import get_model, get_model_resolution, label_image
+# from keras_utils import get_model, get_model_resolution, label_image, count_num_features
+from openai_utils import get_model, get_model_resolution, label_image, count_num_features
+
+
+def get_num_features(model=None):
+    return count_num_features(model)
 
 
 def get_target_model_size(resolution=None):

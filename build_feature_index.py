@@ -9,6 +9,7 @@ from model_utils import (
     get_target_model_size,
     load_keras_model,
     convert_image_to_features,
+    get_num_features,
 )
 
 
@@ -25,7 +26,7 @@ def build_feature_index(is_horizontal_banner=False, resolution=None):
     try:
         Y_hat = np.load(feature_filename)
     except FileNotFoundError:
-        num_features = np.product(model.output_shape[1:])
+        num_features = get_num_features(model)
         Y_hat = np.zeros((num_games, num_features))
 
     start = time()
