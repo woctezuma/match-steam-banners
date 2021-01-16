@@ -2,12 +2,16 @@ import clip
 import torch
 
 
-def count_num_features(model=None):
+def get_model_slug_for_clip():
+    return "clip"
+
+
+def count_num_features_for_clip(model=None):
     num_features = 512
     return num_features
 
 
-def get_model_resolution(model=None):
+def get_model_resolution_for_clip(model=None):
     if model is None:
         resolution = 224
     else:
@@ -33,29 +37,31 @@ def load_clip_tools():
     return model, preprocess
 
 
-def get_clip_preprocessing():
+def get_preprocessing_for_clip():
     _, preprocess = load_clip_tools()
     return preprocess
 
 
-def preprocess_image_array_for_model(image_array, preprocess=None):
+def preprocess_image_array_for_model_for_clip(image_array, preprocess=None):
     if preprocess is None:
-        preprocess = get_clip_preprocessing()
+        preprocess = get_preprocessing_for_clip()
 
     image_array = preprocess(image_array).unsqueeze(0)
     return image_array
 
 
-def get_model(input_shape=None, include_top=None, pooling=None):
+def get_model_for_clip(input_shape=None, include_top=None, pooling=None):
     model, _ = load_clip_tools()
     return model
 
 
-def label_image(image, model=None, preprocess=None, normalize_features=True):
+def label_image_for_clip(image, model=None, preprocess=None, normalize_features=True):
     if model is None:
-        model = get_model()
+        model = get_model_for_clip()
 
-    preprocessed_image = preprocess_image_array_for_model(image, preprocess=preprocess)
+    preprocessed_image = preprocess_image_array_for_model_for_clip(
+        image, preprocess=preprocess
+    )
     image_array = preprocessed_image.to(get_device())
 
     with torch.no_grad():

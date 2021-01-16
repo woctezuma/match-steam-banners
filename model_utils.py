@@ -1,18 +1,54 @@
-# from keras_utils import get_model, get_model_resolution, label_image, count_num_features, get_clip_preprocessing
-from openai_utils import get_model, get_model_resolution, label_image, count_num_features, get_clip_preprocessing
+from keras_utils import (
+    get_model_slug_for_keras,
+    get_model_for_keras,
+    get_model_resolution_for_keras,
+    label_image_for_keras,
+    count_num_features_for_keras,
+    get_dummy_preprocessing_for_keras,
+)
+from openai_utils import (
+    get_model_slug_for_clip,
+    get_model_for_clip,
+    get_model_resolution_for_clip,
+    label_image_for_clip,
+    count_num_features_for_clip,
+    get_preprocessing_for_clip,
+)
+
+
+def get_my_model_of_choice(choice_index=-1):
+    available_models = [get_model_slug_for_keras(), get_model_slug_for_clip()]
+
+    # The following line is where you can switch between Keras' MobileNet and OpenAI's CLIP:
+    chosen_model = available_models[choice_index]
+
+    return chosen_model
 
 
 def get_num_features(model=None):
-    return count_num_features(model)
+    if get_model_slug_for_clip() == get_my_model_of_choice():
+        num_features = count_num_features_for_clip(model)
+    else:
+        num_features = count_num_features_for_keras(model)
+
+    return num_features
 
 
 def get_preprocessing_tool():
-    return get_clip_preprocessing()
+    if get_model_slug_for_clip() == get_my_model_of_choice():
+        preprocessing_tool = get_preprocessing_for_clip()
+    else:
+        preprocessing_tool = get_dummy_preprocessing_for_keras()
+
+    return preprocessing_tool
 
 
 def get_target_model_size(resolution=None):
     if resolution is None:
-        resolution = get_model_resolution()
+        if get_model_slug_for_clip() == get_my_model_of_choice():
+            resolution = get_model_resolution_for_clip()
+        else:
+            resolution = get_model_resolution_for_keras()
 
     target_model_size = (resolution, resolution)
 
@@ -31,13 +67,23 @@ def load_model(target_model_size=None, include_top=False, pooling="avg"):
         target_model_size = get_target_model_size()
 
     input_shape = get_input_shape(target_model_size)
-    model = get_model(input_shape=input_shape, include_top=include_top, pooling=pooling)
+    if get_model_slug_for_clip() == get_my_model_of_choice():
+        model = get_model_for_clip(
+            input_shape=input_shape, include_top=include_top, pooling=pooling
+        )
+    else:
+        model = get_model_for_keras(
+            input_shape=input_shape, include_top=include_top, pooling=pooling
+        )
 
     return model
 
 
 def convert_image_to_features(image, model, preprocess=None):
-    yhat = label_image(image, model, preprocess=preprocess)
+    if get_model_slug_for_clip() == get_my_model_of_choice():
+        yhat = label_image_for_clip(image, model, preprocess=preprocess)
+    else:
+        yhat = label_image_for_keras(image, model, preprocess=preprocess)
 
     features = yhat.flatten()
 
