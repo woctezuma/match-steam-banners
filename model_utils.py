@@ -1,7 +1,7 @@
 import numpy as np
 from tensorflow.keras.applications import MobileNetV3Small
 from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
-from keras.preprocessing.image import img_to_array
+from tensorflow.keras.preprocessing.image import img_to_array
 
 
 def get_target_model_size():

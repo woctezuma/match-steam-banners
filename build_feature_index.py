@@ -1,7 +1,7 @@
 from time import time
 
 import numpy as np
-from keras.preprocessing.image import load_img
+from tensorflow.keras.preprocessing.image import load_img
 
 from app_id_utils import freeze_app_ids, list_app_ids, app_id_to_image_filename
 from data_utils import get_label_database_filename
