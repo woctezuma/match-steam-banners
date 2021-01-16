@@ -26,9 +26,7 @@ def get_input_shape(target_model_size, num_channels=3):
     return input_shape
 
 
-def load_keras_model(target_model_size=None, include_top=False, pooling="avg"):
-    # Reference: https://github.com/keras-team/keras-applications/blob/master/keras_applications/mobilenet_v3.py
-
+def load_model(target_model_size=None, include_top=False, pooling="avg"):
     if target_model_size is None:
         target_model_size = get_target_model_size()
 

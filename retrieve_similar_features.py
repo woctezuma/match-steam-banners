@@ -9,7 +9,7 @@ from data_utils import get_label_database_filename
 from download_utils import download_query_image
 from model_utils import (
     get_target_model_size,
-    load_keras_model,
+    load_model,
     convert_image_to_features,
     get_preprocessing_tool
 )
@@ -73,7 +73,7 @@ def batch_retrieve_similar_features(
     knn = get_knn_search_structure(label_database, use_cosine_similarity)
 
     target_model_size = get_target_model_size(resolution=resolution)
-    keras_model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
+    keras_model = load_model(target_model_size=target_model_size, pooling=pooling)
     preprocess = get_preprocessing_tool()
 
     game_names = load_game_names_from_steamspy()

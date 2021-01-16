@@ -7,7 +7,7 @@ from app_id_utils import freeze_app_ids, list_app_ids, app_id_to_image_filename
 from data_utils import get_label_database_filename
 from model_utils import (
     get_target_model_size,
-    load_keras_model,
+    load_model,
     convert_image_to_features,
     get_num_features,
     get_preprocessing_tool,
@@ -22,7 +22,7 @@ def build_feature_index(is_horizontal_banner=False, resolution=None):
     num_games = len(app_ids)
 
     target_model_size = get_target_model_size(resolution=resolution)
-    model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
+    model = load_model(target_model_size=target_model_size, pooling=pooling)
     preprocess = get_preprocessing_tool()
 
     try:
