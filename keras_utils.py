@@ -4,8 +4,8 @@ from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.preprocessing.image import load_img
 
 
-def load_image(image_filename, target_model_size):
-    image = load_img(image_filename, target_size=target_model_size)
+def load_image(image_filename, target_size):
+    image = load_img(image_filename, target_size=target_size)
     return image
 
 
