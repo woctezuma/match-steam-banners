@@ -1,10 +1,11 @@
 import steamspypi
+import gamedatacrunch as gdc
 
 from benchmark_utils import save_top_100_app_ids, load_top_100_app_ids_from_disk
 
 
 def load_game_names_from_steamspy():
-    data = steamspypi.load()
+    data = gdc.load_as_steamspy_api()
 
     game_names = dict()
     for app_id in data.keys():
