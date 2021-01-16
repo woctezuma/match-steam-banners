@@ -32,7 +32,7 @@ NB: Tensorflow 2 supports Python 3.5–3.8, not 3.9.
 %git clone https://github.com/openai/CLIP.git
 %mv CLIP/bpe_simple_vocab_16e6.txt.gz .
 %mv CLIP/*.py .
-```bash
+```
 
 ## Data
 
