@@ -7,8 +7,11 @@ def count_num_features(model=None):
     return num_features
 
 
-def get_model_resolution():
-    resolution = 224
+def get_model_resolution(model=None):
+    if model is None:
+        resolution = 224
+    else:
+        resolution = model.input_resolution.item()
     return resolution
 
 
