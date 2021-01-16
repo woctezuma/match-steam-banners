@@ -12,14 +12,14 @@ from model_utils import (
 )
 
 
-def build_feature_index(is_horizontal_banner=False):
+def build_feature_index(is_horizontal_banner=False, resolution=None):
     pooling = "avg"
     feature_filename = get_label_database_filename(pooling)
 
     app_ids = list_app_ids(is_horizontal_banner=is_horizontal_banner)
     num_games = len(app_ids)
 
-    target_model_size = get_target_model_size()
+    target_model_size = get_target_model_size(resolution=resolution)
     model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
 
     try:
@@ -55,4 +55,4 @@ def build_feature_index(is_horizontal_banner=False):
 
 
 if __name__ == "__main__":
-    build_feature_index(is_horizontal_banner=False)
+    build_feature_index(is_horizontal_banner=False, resolution=None)

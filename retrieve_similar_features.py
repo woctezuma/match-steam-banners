@@ -62,6 +62,7 @@ def batch_retrieve_similar_features(
     is_horizontal_banner=False,
     pooling="avg",
     num_neighbors=10,
+    resolution=None,
 ):
     if query_app_ids is None:
         query_app_ids = load_benchmarked_app_ids()
@@ -69,7 +70,7 @@ def batch_retrieve_similar_features(
     label_database = np.load(get_label_database_filename(pooling))
     knn = get_knn_search_structure(label_database, use_cosine_similarity)
 
-    target_model_size = get_target_model_size()
+    target_model_size = get_target_model_size(resolution=resolution)
     keras_model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
 
     game_names = load_game_names_from_steamspy()
@@ -98,4 +99,4 @@ def batch_retrieve_similar_features(
 
 if __name__ == "__main__":
     query_app_ids = load_benchmarked_app_ids()
-    batch_retrieve_similar_features(query_app_ids, is_horizontal_banner=False)
+    batch_retrieve_similar_features(query_app_ids, is_horizontal_banner=False, resolution=None)

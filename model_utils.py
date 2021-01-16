@@ -1,10 +1,14 @@
 import numpy as np
-from keras_utils import get_model, preprocess_image_array_for_model
+
 from generic_utils import convert_image_to_array
+from keras_utils import get_model, preprocess_image_array_for_model, get_model_resolution
 
 
-def get_target_model_size():
-    target_model_size = (256, 256)
+def get_target_model_size(resolution=None):
+    if resolution is None:
+        resolution = get_model_resolution()
+
+    target_model_size = (resolution, resolution)
 
     return target_model_size
 

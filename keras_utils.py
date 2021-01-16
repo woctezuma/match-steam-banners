@@ -2,6 +2,11 @@ from tensorflow.keras.applications import MobileNetV3Small
 from tensorflow.keras.applications.mobilenet_v3 import preprocess_input
 
 
+def get_model_resolution():
+    resolution = 256
+    return resolution
+
+
 def preprocess_image_array_for_model(image_array):
     image_array = preprocess_input(image_array)
     return image_array
