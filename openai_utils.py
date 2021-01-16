@@ -73,3 +73,8 @@ def label_image_for_clip(image, model=None, preprocess=None, normalize_features=
     yhat = image_features.cpu().numpy()
 
     return yhat
+
+
+if __name__ == "__main__":
+    slug_name = get_model_slug_for_clip()
+    print("Slug: {}".format(slug_name))

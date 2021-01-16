@@ -88,3 +88,8 @@ def convert_image_to_features(image, model, preprocess=None):
     features = yhat.flatten()
 
     return features
+
+
+if __name__ == "__main__":
+    chosen_model = get_my_model_of_choice()
+    print("Slug of the chosen model: {}".format(chosen_model))
