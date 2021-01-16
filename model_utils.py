@@ -1,4 +1,5 @@
-from keras_utils import get_model, get_model_resolution, label_image
+# from keras_utils import get_model, get_model_resolution, label_image
+from openai_utils import get_model, get_model_resolution, label_image
 
 
 def get_target_model_size(resolution=None):
