@@ -1,9 +1,13 @@
-# from keras_utils import get_model, get_model_resolution, label_image, count_num_features
-from openai_utils import get_model, get_model_resolution, label_image, count_num_features
+# from keras_utils import get_model, get_model_resolution, label_image, count_num_features, get_clip_preprocessing
+from openai_utils import get_model, get_model_resolution, label_image, count_num_features, get_clip_preprocessing
 
 
 def get_num_features(model=None):
     return count_num_features(model)
+
+
+def get_preprocessing_tool():
+    return get_clip_preprocessing()
 
 
 def get_target_model_size(resolution=None):
@@ -34,8 +38,8 @@ def load_keras_model(target_model_size=None, include_top=False, pooling="avg"):
     return model
 
 
-def convert_image_to_features(image, model):
-    yhat = label_image(image, model)  # runtime: 1 second
+def convert_image_to_features(image, model, preprocess=None):
+    yhat = label_image(image, model, preprocess=preprocess)
 
     features = yhat.flatten()
 

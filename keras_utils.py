@@ -11,6 +11,8 @@ def count_num_features(model=None):
     num_features = np.product(model.output_shape[1:])
     return num_features
 
+def get_clip_preprocessing():
+    return None
 
 def get_model_resolution():
     resolution = 256
@@ -27,7 +29,7 @@ def get_model(input_shape, include_top=False, pooling="avg"):
     return model
 
 
-def label_image(image, model):
+def label_image(image, model, preprocess=None):
     # Reference: https://github.com/glouppe/blackbelt/
 
     # convert the image pixels to a numpy array

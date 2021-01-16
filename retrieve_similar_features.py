@@ -11,6 +11,7 @@ from model_utils import (
     get_target_model_size,
     load_keras_model,
     convert_image_to_features,
+    get_preprocessing_tool
 )
 from print_utils import print_ranking_for_app_id
 from steam_spy_utils import load_benchmarked_app_ids, load_game_names_from_steamspy
@@ -23,6 +24,7 @@ def retrieve_similar_features(
     keras_model,
     is_horizontal_banner=False,
     num_neighbors=10,
+    preprocess=None,
 ):
     image_filename = app_id_to_image_filename(query_app_id, is_horizontal_banner)
     if not Path(image_filename).is_file():
@@ -32,7 +34,7 @@ def retrieve_similar_features(
             output_filename=image_filename,
         )
     image = load_image(image_filename, target_size=target_model_size)
-    query_des = convert_image_to_features(image, keras_model)
+    query_des = convert_image_to_features(image, keras_model, preprocess=preprocess)
 
     # Sci-Kit Learn with cosine similarity. Reshape data as it contains a single sample.
     _, matches = knn.kneighbors(query_des.reshape(1, -1), n_neighbors=num_neighbors)
@@ -72,6 +74,7 @@ def batch_retrieve_similar_features(
 
     target_model_size = get_target_model_size(resolution=resolution)
     keras_model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
+    preprocess = get_preprocessing_tool()
 
     game_names = load_game_names_from_steamspy()
 
@@ -85,6 +88,7 @@ def batch_retrieve_similar_features(
                 keras_model,
                 is_horizontal_banner=is_horizontal_banner,
                 num_neighbors=num_neighbors,
+                preprocess=preprocess,
             )
         except FileNotFoundError:
             print("Query image not found for appID={}.".format(query_app_id))

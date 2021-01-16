@@ -10,6 +10,7 @@ from model_utils import (
     load_keras_model,
     convert_image_to_features,
     get_num_features,
+    get_preprocessing_tool,
 )
 
 
@@ -22,6 +23,7 @@ def build_feature_index(is_horizontal_banner=False, resolution=None):
 
     target_model_size = get_target_model_size(resolution=resolution)
     model = load_keras_model(target_model_size=target_model_size, pooling=pooling)
+    preprocess = get_preprocessing_tool()
 
     try:
         Y_hat = np.load(feature_filename)
@@ -42,7 +44,7 @@ def build_feature_index(is_horizontal_banner=False, resolution=None):
 
         image_filename = app_id_to_image_filename(app_id, is_horizontal_banner)
         image = load_image(image_filename, target_size=target_model_size)
-        features = convert_image_to_features(image, model)
+        features = convert_image_to_features(image, model, preprocess=preprocess)
 
         Y_hat[counter, :] = features
 
