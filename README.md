@@ -77,6 +77,14 @@ python find_unique_games.py
 
 NB: *unique* games are ones which are the most dissimilar (low similarity score) to others to their first neighbor.
 
+### 4. Export data and results for a web app
+
+Optionally, export data and results for [a web app][my-flask-API]:
+
+```bash
+python export_data_for_web_app.py
+```
+
 ## Results
 
 Results obtained with [MobileNet v3][keras-mobilenet] are shown [on the Wiki][my-wiki].
@@ -134,6 +142,7 @@ For instance:
 [my-wiki]: <https://github.com/woctezuma/match-steam-banners/wiki>
 [screenshot-repository]: <https://github.com/woctezuma/download-steam-screenshots>
 [steamspy-api]: <https://github.com/woctezuma/steamspypi>
+[my-flask-API]: <https://github.com/woctezuma/heroku-flask-api>
 
 [colab-branch]: <https://github.com/woctezuma/match-steam-banners/tree/colab>
 [match_steam_banners-notebook]: <https://colab.research.google.com/github/woctezuma/match-steam-banners/blob/colab/notebooks/match_steam_banners.ipynb>
