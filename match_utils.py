@@ -1,13 +1,11 @@
 # Objective: find **the** nearest neighbor of each feature vector (encoding a banner) in the database.
 
-from time import time
-
 import numpy as np
 
 from app_id_utils import get_frozen_app_ids
 from build_feature_index import get_label_database_filename
 from data_utils import save_sim_dict
-from retrieve_similar_features import get_knn_search_structure
+from knn_utils import get_knn_search_structure, find_knn_for_all
 
 
 def match_all(use_cosine_similarity=True, pooling="avg"):
@@ -17,12 +15,8 @@ def match_all(use_cosine_similarity=True, pooling="avg"):
     query = None
     num_neighbors = 1
 
-    # Caveat: the output 'dist' returned by knn.kneighbors() is the 'cosine distance', not the cosine similarity!
-    # Reference: https://en.wikipedia.org/wiki/Cosine_similarity
-
-    start = time()
-    dist, matches = knn.kneighbors(X=query, n_neighbors=num_neighbors)
-    print("Elapsed time: {:.2f} s".format(time() - start))
+    # Caveat: the output is the cosine distance, not the cosine similarity! Transform it before using it!
+    dist, matches = find_knn_for_all(knn, query, num_neighbors)
 
     app_ids = get_frozen_app_ids()
 

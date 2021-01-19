@@ -1,12 +1,12 @@
 from pathlib import Path
 
 import numpy as np
-from sklearn.neighbors import NearestNeighbors
 
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
 from data_utils import get_label_database_filename
 from download_utils import download_query_image
 from generic_utils import load_image
+from knn_utils import get_knn_search_structure, find_knn_for_a_single_query
 from model_utils import (
     get_target_model_size,
     load_model,
@@ -36,8 +36,7 @@ def retrieve_similar_features(
     image = load_image(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model, preprocess=preprocess)
 
-    # Sci-Kit Learn with cosine similarity. Reshape data as it contains a single sample.
-    _, matches = knn.kneighbors(query_des.reshape(1, -1), n_neighbors=num_neighbors)
+    _, matches = find_knn_for_a_single_query(knn, query_des, num_neighbors)
 
     app_ids = get_frozen_app_ids()
 
@@ -45,17 +44,6 @@ def retrieve_similar_features(
     reference_app_id_counter = [app_ids[element] for element in matches[0]]
 
     return reference_app_id_counter
-
-
-def get_knn_search_structure(label_database, use_cosine_similarity=True):
-    if use_cosine_similarity:
-        knn = NearestNeighbors(metric="cosine", algorithm="brute")
-        knn.fit(label_database)
-    else:
-        knn = NearestNeighbors(algorithm="brute")
-        knn.fit(label_database)
-
-    return knn
 
 
 def batch_retrieve_similar_features(
