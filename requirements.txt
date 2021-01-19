@@ -11,3 +11,4 @@ torchvision==0.8.2+cu101
 ftfy
 regex
 tqdm
+faiss-gpu
