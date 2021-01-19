@@ -1,12 +1,12 @@
 from pathlib import Path
 
 import numpy as np
-from generic_utils import load_image
 from sklearn.neighbors import NearestNeighbors
 
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
 from data_utils import get_label_database_filename
 from download_utils import download_query_image
+from generic_utils import load_image
 from model_utils import (
     get_target_model_size,
     load_model,
@@ -18,13 +18,13 @@ from steam_spy_utils import load_benchmarked_app_ids, load_game_names_from_steam
 
 
 def retrieve_similar_features(
-    query_app_id,
-    knn,
-    target_model_size,
-    keras_model,
-    is_horizontal_banner=False,
-    num_neighbors=10,
-    preprocess=None,
+        query_app_id,
+        knn,
+        target_model_size,
+        keras_model,
+        is_horizontal_banner=False,
+        num_neighbors=10,
+        preprocess=None,
 ):
     image_filename = app_id_to_image_filename(query_app_id, is_horizontal_banner)
     if not Path(image_filename).is_file():
@@ -59,12 +59,12 @@ def get_knn_search_structure(label_database, use_cosine_similarity=True):
 
 
 def batch_retrieve_similar_features(
-    query_app_ids=None,
-    use_cosine_similarity=True,
-    is_horizontal_banner=False,
-    pooling="avg",
-    num_neighbors=10,
-    resolution=None,
+        query_app_ids=None,
+        use_cosine_similarity=True,
+        is_horizontal_banner=False,
+        pooling="avg",
+        num_neighbors=10,
+        resolution=None,
 ):
     if query_app_ids is None:
         query_app_ids = load_benchmarked_app_ids()
