@@ -16,7 +16,7 @@ from openai_utils import (
 )
 
 
-def get_my_model_of_choice(choice_index=-1):
+def get_my_model_of_choice(choice_index=0):
     available_models = [get_model_slug_for_keras(), get_model_slug_for_clip()]
 
     # The following line is where you can switch between Keras' MobileNet and OpenAI's CLIP:
