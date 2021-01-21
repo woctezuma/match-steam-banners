@@ -2,7 +2,7 @@ from time import time
 
 import numpy as np
 from generic_utils import load_image
-from PIL import Image as pil_image
+from PIL import ImageOps as pil_imageops
 
 from app_id_utils import freeze_app_ids, list_app_ids, app_id_to_image_filename
 from data_utils import get_label_database_filename
@@ -48,9 +48,9 @@ def build_feature_index(
         image_filename = app_id_to_image_filename(app_id, is_horizontal_banner)
         image = load_image(image_filename, target_size=target_model_size)
         if apply_flip:
-            image = pil_image.flip(image)
+            image = pil_imageops.flip(image)
         if apply_mirror:
-            image = pil_image.mirror(image)
+            image = pil_imageops.mirror(image)
         features = convert_image_to_features(image, model, preprocess=preprocess)
 
         Y_hat[counter, :] = features
