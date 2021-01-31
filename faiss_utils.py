@@ -22,7 +22,9 @@ def get_faiss_search_structure(embeddings, use_cosine_similarity=True):
     return index
 
 
-def find_knn_for_all(index, embeddings_for_query, num_neighbors, use_cosine_similarity=True):
+def find_faiss_knn_for_all(
+    index, embeddings_for_query, num_neighbors, use_cosine_similarity=True
+):
     xq = embeddings_for_query.astype('float32')
 
     if use_cosine_similarity:

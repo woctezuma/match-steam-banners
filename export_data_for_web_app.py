@@ -5,7 +5,7 @@ import numpy as np
 
 from app_id_utils import load_frozen_app_ids
 from data_utils import get_label_database_filename
-from faiss_utils import get_faiss_search_structure, find_knn_for_all
+from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
 
 
 def get_export_folder_name():
@@ -70,7 +70,7 @@ def export_matches(
         embeddings, use_cosine_similarity=use_cosine_similarity
     )
 
-    D, I = find_knn_for_all(
+    D, I = find_faiss_knn_for_all(
         index, embeddings, num_neighbors, use_cosine_similarity=use_cosine_similarity
     )
 
