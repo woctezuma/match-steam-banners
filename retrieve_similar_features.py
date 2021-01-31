@@ -6,7 +6,7 @@ from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
 from data_utils import get_label_database_filename
 from download_utils import download_query_image
 from generic_utils import load_image
-from knn_utils import get_knn_search_structure, find_knn_for_a_single_query
+from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
 from model_utils import (
     get_target_model_size,
     load_model,
@@ -25,6 +25,7 @@ def retrieve_similar_features(
         is_horizontal_banner=False,
         num_neighbors=10,
         preprocess=None,
+        use_cosine_similarity=True,
 ):
     image_filename = app_id_to_image_filename(query_app_id, is_horizontal_banner)
     if not Path(image_filename).is_file():
@@ -36,7 +37,12 @@ def retrieve_similar_features(
     image = load_image(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model, preprocess=preprocess)
 
-    _, matches = find_knn_for_a_single_query(knn, query_des, num_neighbors)
+    _, matches = find_faiss_knn_for_all(
+        index=knn,
+        embeddings_for_query=query_des,
+        num_neighbors=num_neighbors,
+        use_cosine_similarity=use_cosine_similarity,
+    )
 
     app_ids = get_frozen_app_ids()
 
@@ -58,7 +64,9 @@ def batch_retrieve_similar_features(
         query_app_ids = load_benchmarked_app_ids()
 
     label_database = np.load(get_label_database_filename(pooling))
-    knn = get_knn_search_structure(label_database, use_cosine_similarity)
+    knn = get_faiss_search_structure(
+        embeddings=label_database, use_cosine_similarity=use_cosine_similarity
+    )
 
     target_model_size = get_target_model_size(resolution=resolution)
     keras_model = load_model(target_model_size=target_model_size, pooling=pooling)
@@ -77,6 +85,7 @@ def batch_retrieve_similar_features(
                 is_horizontal_banner=is_horizontal_banner,
                 num_neighbors=num_neighbors,
                 preprocess=preprocess,
+                use_cosine_similarity=use_cosine_similarity,
             )
         except FileNotFoundError:
             print("Query image not found for appID={}.".format(query_app_id))
