@@ -57,9 +57,19 @@ def build_feature_index(
 
         if (counter % 1000) == 0:
             print("{}/{} in {:.2f} s".format(counter, num_games, time() - start))
-            np.save(feature_filename, Y_hat)
+            np.save(
+                feature_filename,
+                np.asarray(Y_hat, dtype=np.float16),
+                allow_pickle=False,
+                fix_imports=False,
+            )
 
-    np.save(feature_filename, Y_hat)
+    np.save(
+        feature_filename,
+        np.asarray(Y_hat, dtype=np.float16),
+        allow_pickle=False,
+        fix_imports=False,
+    )
 
     return
 
