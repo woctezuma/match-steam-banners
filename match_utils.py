@@ -14,7 +14,7 @@ def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=Fals
         embeddings=label_database, use_cosine_similarity=use_cosine_similarity
     )
 
-    query = None
+    query = label_database
     num_neighbors = 1
 
     # Caveat:

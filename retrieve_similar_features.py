@@ -36,6 +36,7 @@ def retrieve_similar_features(
         )
     image = load_image(image_filename, target_size=target_model_size)
     query_des = convert_image_to_features(image, keras_model, preprocess=preprocess)
+    query_des = query_des.reshape(1, -1)
 
     _, matches = find_faiss_knn_for_all(
         index=knn,
