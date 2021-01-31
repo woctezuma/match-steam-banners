@@ -50,7 +50,7 @@ def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=Fals
 
         sim_dict[query_app_id] = dict()
         sim_dict[query_app_id]["app_id"] = second_best_matched_app_id
-        sim_dict[query_app_id]["similarity"] = second_best_similarity_score
+        sim_dict[query_app_id]["similarity"] = float(second_best_similarity_score)
 
     save_sim_dict(sim_dict, pooling=pooling)
 
