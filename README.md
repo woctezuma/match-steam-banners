@@ -27,11 +27,9 @@ pip install -r requirements.txt -f https://download.pytorch.org/whl/torch_stable
 ```
 NB: Tensorflow 2 supports Python 3.5–3.8, not 3.9.
 
--   Clone OpenAI's CLIP repository, and copy the relevant files into the current directory:
+-   Install OpenAI's CLIP with pip:
 ```bash
-!git clone https://github.com/openai/CLIP.git
-%mv CLIP/bpe_simple_vocab_16e6.txt.gz .
-%mv CLIP/*.py .
+pip install git+https://github.com/openai/CLIP.git
 ```
 
 ## Data
