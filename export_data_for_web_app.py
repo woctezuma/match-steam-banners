@@ -48,7 +48,14 @@ def export_app_names(
 
     app_names = []
     for app_id in app_ids:
-        app_name = app_info[int(app_id)]
+        try:
+            app_name = app_info[int(app_id)]
+        except KeyError:
+            # This can happen if I reuse an old folder of images without reusing the JSON files corresponding to it.
+            # For instance, Grand Theft Auto: Vice City (appID=12240) was removed from Steam on April 19, 2021.
+            # So, if I re-use pictures downloaded in January 2021, and add new pictures downloaded in May 2021,
+            # but I do not re-use JSON from January, and only rely on JSON from May, then that app name will be unknown.
+            app_name = "N/A"
         app_names.append(app_name)
 
     print("#apps = {}".format(len(app_names)))
