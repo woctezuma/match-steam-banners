@@ -130,7 +130,7 @@ def count_num_features_for_dino(model=None, args=None):
     return num_features
 
 
-def get_model_resolution_for_dino(model=None):
+def get_model_resolution_for_dino():
     resolution = 224
     return resolution
 
@@ -190,7 +190,7 @@ def preprocess_image_array_for_model_for_dino(image_array, preprocess=None):
     return processed_array
 
 
-def get_model_for_dino(input_shape=None, include_top=None, pooling=None, args=None):
+def get_model_for_dino(args=None):
     if args is None:
         args = get_parser_args()
 
