@@ -70,7 +70,7 @@ def get_parser_args(
         "--feature_style",
         default="simple",
         type=str,
-        choices=["simple", "complex", "vit_base"],
+        choices=["simple", "complex"],
     )
     args = parser.parse_args(
         [
