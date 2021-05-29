@@ -32,6 +32,14 @@ NB: Tensorflow 2 supports Python 3.5–3.8, not 3.9.
 pip install git+https://github.com/openai/CLIP.git
 ```
 
+-   Install Facebook's DINO with git:
+
+```bash
+git clone https://github.com/facebookresearch/dino.git
+mv dino/vision_transformer.py .
+mv dino/utils.py .
+```
+
 ## Data
 
 Data is available in [`download-steam-banners-data/`](https://github.com/woctezuma/download-steam-banners-data).
