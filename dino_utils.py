@@ -2,7 +2,6 @@ import argparse
 
 import torch
 import vision_transformer as vits
-from PIL import Image
 from torchvision import transforms as pth_transforms
 from utils import bool_flag
 
@@ -183,8 +182,7 @@ def preprocess_image_array_for_model_for_dino(image_array, preprocess=None):
     if preprocess is None:
         preprocess = get_preprocessing_for_dino()
 
-    pil_img = Image.fromarray(image_array)
-    inp = preprocess(pil_img)
+    inp = preprocess(image_array)
     processed_array = torch.unsqueeze(inp, axis=0)
 
     return processed_array
