@@ -24,7 +24,7 @@ from openai_utils import (
 )
 
 
-def get_my_model_of_choice(choice_index=0):
+def get_my_model_of_choice(choice_index=2):
     available_models = [
         get_model_slug_for_keras(),
         get_model_slug_for_clip(),
