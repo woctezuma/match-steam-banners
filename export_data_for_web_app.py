@@ -3,7 +3,7 @@ from pathlib import Path
 
 import numpy as np
 
-from app_id_utils import load_frozen_app_ids
+from app_id_utils import get_frozen_app_ids
 from data_utils import get_label_database_filename
 from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
 
@@ -16,7 +16,7 @@ def get_export_folder_name():
 
 
 def export_app_ids(out_fname_json="app_ids.json", out_fname_npy="app_ids.npy"):
-    app_ids = [int(app_id) for app_id in load_frozen_app_ids()]
+    app_ids = [int(app_id) for app_id in get_frozen_app_ids()]
 
     print("#apps = {}".format(len(app_ids)))
 
