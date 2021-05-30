@@ -15,7 +15,8 @@ def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=Fals
     )
 
     query = label_database
-    num_neighbors = 1
+    # Set the number of neighbors to 2, as the first match should be the query, and thus not interesting to display.
+    num_neighbors = 2
 
     # Caveat:
     #
