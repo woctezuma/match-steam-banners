@@ -15,8 +15,12 @@ def get_export_folder_name():
     return export_folder_name
 
 
-def export_app_ids(out_fname_json="app_ids.json", out_fname_npy="app_ids.npy"):
-    app_ids = [int(app_id) for app_id in get_frozen_app_ids()]
+def export_app_ids(
+    out_fname_json="app_ids.json",
+    out_fname_npy="app_ids.npy",
+    is_horizontal_banner=False,
+):
+    app_ids = [int(app_id) for app_id in get_frozen_app_ids(is_horizontal_banner)]
 
     print("#apps = {}".format(len(app_ids)))
 
@@ -92,7 +96,7 @@ def export_matches(
 
 
 if __name__ == "__main__":
-    app_ids = export_app_ids()
+    app_ids = export_app_ids(is_horizontal_banner=False)
 
     input_fname = "IStoreService.json"
     if Path(input_fname).exists():
