@@ -40,6 +40,12 @@ mv dino/vision_transformer.py .
 mv dino/utils.py .
 ```
 
+## Model
+
+MobileNet is an efficient convolutional neural network.
+
+In this repository, the image encoder is `MobileNetV3-Small`.
+
 ## Data
 
 Data is available in [`download-steam-banners-data/`](https://github.com/woctezuma/download-steam-banners-data).
