@@ -42,7 +42,7 @@ mv dino/utils.py .
 
 ## Model
 
-MobileNet is a convolutional neural network, trained on ImageNet-1k (1.28M images with 1000 classes).
+MobileNet is a convolutional neural network, trained for classification on ImageNet-1k (1.28M images with 1000 classes).
 
 In this repository, the image encoder is `MobileNetV3-Small`.
 
