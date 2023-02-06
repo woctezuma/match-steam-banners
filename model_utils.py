@@ -1,26 +1,26 @@
 from dino_utils import (
-    get_model_slug_for_dino,
+    count_num_features_for_dino,
     get_model_for_dino,
     get_model_resolution_for_dino,
-    label_image_for_dino,
-    count_num_features_for_dino,
+    get_model_slug_for_dino,
     get_preprocessing_for_dino,
+    label_image_for_dino,
 )
 from keras_utils import (
-    get_model_slug_for_keras,
-    get_model_for_keras,
-    get_model_resolution_for_keras,
-    label_image_for_keras,
     count_num_features_for_keras,
     get_dummy_preprocessing_for_keras,
+    get_model_for_keras,
+    get_model_resolution_for_keras,
+    get_model_slug_for_keras,
+    label_image_for_keras,
 )
 from openai_utils import (
-    get_model_slug_for_clip,
+    count_num_features_for_clip,
     get_model_for_clip,
     get_model_resolution_for_clip,
-    label_image_for_clip,
-    count_num_features_for_clip,
+    get_model_slug_for_clip,
     get_preprocessing_for_clip,
+    label_image_for_clip,
 )
 
 
@@ -75,7 +75,7 @@ def get_target_model_size(resolution=None):
 
 def get_input_shape(target_model_size, num_channels=3):
     # Image data format: channels last
-    input_shape = tuple(list(target_model_size) + [num_channels])
+    input_shape = (*list(target_model_size), num_channels)
 
     return input_shape
 
@@ -118,4 +118,4 @@ def convert_image_to_features(image, model, preprocess=None):
 
 if __name__ == "__main__":
     chosen_model = get_my_model_of_choice()
-    print("Slug of the chosen model: {}".format(chosen_model))
+    print(f"Slug of the chosen model: {chosen_model}")

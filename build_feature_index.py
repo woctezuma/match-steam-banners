@@ -1,17 +1,17 @@
 from time import time
 
 import numpy as np
-from generic_utils import load_image
 from PIL import ImageOps as pil_imageops
 
-from app_id_utils import freeze_app_ids, list_app_ids, app_id_to_image_filename
+from app_id_utils import app_id_to_image_filename, freeze_app_ids, list_app_ids
 from data_utils import get_label_database_filename
+from generic_utils import load_image
 from model_utils import (
-    get_target_model_size,
-    load_model,
     convert_image_to_features,
     get_num_features,
     get_preprocessing_tool,
+    get_target_model_size,
+    load_model,
 )
 
 
@@ -58,7 +58,7 @@ def build_feature_index(
         Y_hat[counter, :] = features
 
         if (counter % 1000) == 0:
-            print("{}/{} in {:.2f} s".format(counter, num_games, time() - start))
+            print(f"{counter}/{num_games} in {time() - start:.2f} s")
             np.save(
                 feature_filename,
                 np.asarray(Y_hat, dtype=np.float16),

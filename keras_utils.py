@@ -61,4 +61,4 @@ def label_image_for_keras(image, model, preprocess=None):
 
 if __name__ == "__main__":
     slug_name = get_model_slug_for_keras()
-    print("Slug: {}".format(slug_name))
+    print(f"Slug: {slug_name}")

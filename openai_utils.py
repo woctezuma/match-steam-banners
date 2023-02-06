@@ -12,18 +12,12 @@ def count_num_features_for_clip(model=None):
 
 
 def get_model_resolution_for_clip(model=None):
-    if model is None:
-        resolution = 224
-    else:
-        resolution = model.input_resolution.item()
+    resolution = 224 if model is None else model.input_resolution.item()
     return resolution
 
 
 def get_device():
-    if torch.cuda.is_available():
-        device = "cuda"
-    else:
-        device = "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     return device
 
 
@@ -78,4 +72,4 @@ def label_image_for_clip(image, model=None, preprocess=None, normalize_features=
 
 if __name__ == "__main__":
     slug_name = get_model_slug_for_clip()
-    print("Slug: {}".format(slug_name))
+    print(f"Slug: {slug_name}")

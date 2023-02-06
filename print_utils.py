@@ -1,5 +1,5 @@
-from steam_spy_utils import load_game_names_from_steamspy, get_app_name
-from steam_store_utils import get_store_url, get_banner_url
+from steam_spy_utils import get_app_name, load_game_names_from_steamspy
+from steam_store_utils import get_banner_url, get_store_url
 
 
 def get_default_image_width():
@@ -49,7 +49,7 @@ def print_ranking_for_app_id(
     query_app_name = get_app_name(query_app_id, game_names=game_names)
     html_linked_image = get_html_linked_image(query_app_id, query_app_name)
 
-    print("\nQuery:\n\n{}\n\n".format(html_linked_image))
+    print(f"\nQuery:\n\n{html_linked_image}\n\n")
 
     for rank, app_id in enumerate(reference_app_id_counter, start=1):
         app_name = get_app_name(app_id, game_names=game_names)

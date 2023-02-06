@@ -3,7 +3,7 @@ import unittest
 
 class TestMainMethods(unittest.TestCase):
     def test_main(self):
-        self.assertTrue(True)
+        assert True
 
 
 if __name__ == "__main__":

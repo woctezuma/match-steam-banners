@@ -22,10 +22,7 @@ def get_default_patch_size():
 
 
 def get_default_n_last_blocks(arch):
-    if "small" in arch:
-        n_last_blocks = 4
-    else:
-        n_last_blocks = 1
+    n_last_blocks = 4 if "small" in arch else 1
     return n_last_blocks
 
 
@@ -135,10 +132,7 @@ def get_model_resolution_for_dino():
 
 
 def get_device():
-    if torch.cuda.is_available():
-        device = "cuda"
-    else:
-        device = "cpu"
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     return device
 
 
@@ -146,7 +140,7 @@ def get_dino_model_name(args=None):
     if args is None:
         args = get_parser_args()
 
-    model_name = "ViT-{}/{}".format(args.arch[0].upper(), args.patch_size)
+    model_name = f"ViT-{args.arch[0].upper()}/{args.patch_size}"
 
     return model_name
 
@@ -255,4 +249,4 @@ def label_image_for_dino(
 
 if __name__ == "__main__":
     slug_name = get_model_slug_for_dino()
-    print("Slug: {}".format(slug_name))
+    print(f"Slug: {slug_name}")

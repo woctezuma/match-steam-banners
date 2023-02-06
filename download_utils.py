@@ -20,7 +20,7 @@ def download_query_image(app_id, is_horizontal_banner=False, output_filename=Non
 
     banner_url = get_banner_url(app_id, is_horizontal_banner=is_horizontal_banner)
 
-    print("\nDownloading banner for appID={} from {}".format(app_id, banner_url))
+    print(f"\nDownloading banner for appID={app_id} from {banner_url}")
 
     response_data = requests.get(url=banner_url)
 
@@ -29,13 +29,13 @@ def download_query_image(app_id, is_horizontal_banner=False, output_filename=Non
     if status_code == 200:
         image_content = response_data.content
 
-        print("Saving image content to {}".format(output_filename))
+        print(f"Saving image content to {output_filename}")
 
         with open(output_filename, "wb") as f:
             f.write(image_content)
 
     else:
-        print("Download failed with status code {}.".format(status_code))
+        print(f"Download failed with status code {status_code}.")
 
     return
 

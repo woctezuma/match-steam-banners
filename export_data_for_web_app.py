@@ -5,7 +5,7 @@ import numpy as np
 
 from app_id_utils import get_frozen_app_ids
 from data_utils import get_label_database_filename
-from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
+from faiss_utils import find_faiss_knn_for_all, get_faiss_search_structure
 
 
 def get_export_folder_name():
@@ -22,7 +22,7 @@ def export_app_ids(
 ):
     app_ids = [int(app_id) for app_id in get_frozen_app_ids(is_horizontal_banner)]
 
-    print("#apps = {}".format(len(app_ids)))
+    print(f"#apps = {len(app_ids)}")
 
     with open(get_export_folder_name() + out_fname_json, "w", encoding="utf8") as f:
         json.dump(app_ids, f)
@@ -45,10 +45,10 @@ def export_app_names(
     input_fname="IStoreService.json",
     out_fname="app_names.json",
 ):
-    with open(input_fname, "r", encoding="utf8") as f:
+    with open(input_fname, encoding="utf8") as f:
         data = json.load(f)
 
-    app_info = dict()
+    app_info = {}
     for e in data["response"]["apps"]:
         app_info[e["appid"]] = e["name"]
 
@@ -64,7 +64,7 @@ def export_app_names(
             app_name = "N/A"
         app_names.append(app_name)
 
-    print("#apps = {}".format(len(app_names)))
+    print(f"#apps = {len(app_names)}")
 
     with open(get_export_folder_name() + out_fname, "w") as f:
         json.dump(app_names, f)
@@ -79,7 +79,7 @@ def export_matches(
 ):
     embeddings = np.load(get_label_database_filename())
 
-    print("(#apps, #features) = {}".format(embeddings.shape))
+    print(f"(#apps, #features) = {embeddings.shape}")
 
     index = get_faiss_search_structure(
         embeddings,

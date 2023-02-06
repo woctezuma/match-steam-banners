@@ -1,7 +1,7 @@
 from data_utils import load_sim_dict_from_disk
 from match_utils import match_all
-from print_utils import print_ranking_for_app_id, get_html_linked_image
-from steam_spy_utils import load_game_names_from_steamspy, get_app_name
+from print_utils import get_html_linked_image, print_ranking_for_app_id
+from steam_spy_utils import get_app_name, load_game_names_from_steamspy
 
 
 def load_sim_dict(use_cosine_similarity=True, pooling="avg"):
@@ -27,7 +27,7 @@ def extract_fixed_number_of_unique_games(sim_dict, num_outputs=250):
     last_query_app_id = unique_app_ids[-1]
     similarity_threshold = sim_dict[last_query_app_id]["similarity"]
 
-    print("Similarity threshold: {:.2f}".format(similarity_threshold))
+    print(f"Similarity threshold: {similarity_threshold:.2f}")
 
     return unique_app_ids
 

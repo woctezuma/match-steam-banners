@@ -35,6 +35,6 @@ def find_faiss_knn_for_all(
 
     start = time()
     D, I = index.search(xq, num_neighbors)
-    print("Elapsed time: {:.2f} s".format(time() - start))
+    print(f"Elapsed time: {time() - start:.2f} s")
 
     return D, I

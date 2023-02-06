@@ -27,6 +27,6 @@ def find_knn_for_all(knn, query, num_neighbors):
 
     start = time()
     dist, matches = knn.kneighbors(X=query, n_neighbors=num_neighbors)
-    print("Elapsed time: {:.2f} s".format(time() - start))
+    print(f"Elapsed time: {time() - start:.2f} s")
 
     return dist, matches

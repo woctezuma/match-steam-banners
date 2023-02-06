@@ -5,13 +5,13 @@ import numpy as np
 from app_id_utils import app_id_to_image_filename, get_frozen_app_ids
 from data_utils import get_label_database_filename
 from download_utils import download_query_image
+from faiss_utils import find_faiss_knn_for_all, get_faiss_search_structure
 from generic_utils import load_image
-from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
 from model_utils import (
-    get_target_model_size,
-    load_model,
     convert_image_to_features,
     get_preprocessing_tool,
+    get_target_model_size,
+    load_model,
 )
 from print_utils import print_ranking_for_app_id
 from steam_spy_utils import load_benchmarked_app_ids, load_game_names_from_steamspy
@@ -89,7 +89,7 @@ def batch_retrieve_similar_features(
                 use_cosine_similarity=use_cosine_similarity,
             )
         except FileNotFoundError:
-            print("Query image not found for appID={}.".format(query_app_id))
+            print(f"Query image not found for appID={query_app_id}.")
             continue
 
         print_ranking_for_app_id(

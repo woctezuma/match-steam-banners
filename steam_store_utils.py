@@ -14,10 +14,7 @@ def get_size_to_name_conversion_table():
 
 
 def get_banner_conventional_name(is_horizontal_banner=False):
-    if is_horizontal_banner:
-        banner_size = "616x353"
-    else:
-        banner_size = "300x450"
+    banner_size = "616x353" if is_horizontal_banner else "300x450"
 
     conversion_table = get_size_to_name_conversion_table()
 
@@ -38,6 +35,6 @@ def get_banner_url(app_id, is_horizontal_banner=False):
 
 
 def get_store_url(app_id):
-    store_url = "https://store.steampowered.com/app/{}".format(app_id)
+    store_url = f"https://store.steampowered.com/app/{app_id}"
 
     return store_url

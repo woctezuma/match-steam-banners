@@ -5,7 +5,7 @@ import numpy as np
 from app_id_utils import get_frozen_app_ids
 from build_feature_index import get_label_database_filename
 from data_utils import save_sim_dict
-from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
+from faiss_utils import find_faiss_knn_for_all, get_faiss_search_structure
 
 
 def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=False):
@@ -35,7 +35,7 @@ def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=Fals
 
     app_ids = get_frozen_app_ids()
 
-    sim_dict = dict()
+    sim_dict = {}
     for counter, query_app_id in enumerate(app_ids):
         last_index = num_neighbors - 1
 
@@ -50,7 +50,7 @@ def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=Fals
             # If find_faiss_knn_for_all() was used, then directly use the output as follows:
             second_best_similarity_score = cosine_distance
 
-        sim_dict[query_app_id] = dict()
+        sim_dict[query_app_id] = {}
         sim_dict[query_app_id]["app_id"] = second_best_matched_app_id
         sim_dict[query_app_id]["similarity"] = float(second_best_similarity_score)
 

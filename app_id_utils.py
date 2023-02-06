@@ -44,7 +44,7 @@ def freeze_app_ids(app_ids, output_file_name=None):
 
     with open(output_file_name, "w", encoding="utf8") as f:
         for app_id in app_ids:
-            f.write("{}\n".format(app_id))
+            f.write(f"{app_id}\n")
 
     return
 
@@ -53,7 +53,7 @@ def load_frozen_app_ids(input_file_name=None):
     if input_file_name is None:
         input_file_name = get_frozen_app_ids_filename()
 
-    with open(input_file_name, "r", encoding="utf8") as f:
+    with open(input_file_name, encoding="utf8") as f:
         # Do not convert to a set object, or any other conversion, because we want to keep the list order as it is.
         # Just read the list from the file. That is all there is to do. Otherwise, appIDs will be scrambled!
         frozen_app_ids = [app_id.strip() for app_id in f.readlines()]
@@ -65,7 +65,7 @@ def get_frozen_app_ids(is_horizontal_banner=False):
     try:
         frozen_app_ids = load_frozen_app_ids()
     except FileNotFoundError:
-        print("Creating {}".format(get_frozen_app_ids_filename()))
+        print(f"Creating {get_frozen_app_ids_filename()}")
         frozen_app_ids = list_app_ids(is_horizontal_banner=is_horizontal_banner)
         freeze_app_ids(frozen_app_ids)
 

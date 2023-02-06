@@ -10,12 +10,9 @@ def get_data_path():
 
 
 def get_image_data_path(is_horizontal_banner=False):
-    if is_horizontal_banner:
-        keyword = "horizontal"
-    else:
-        keyword = "vertical"
+    keyword = "horizontal" if is_horizontal_banner else "vertical"
 
-    image_data_path = get_data_path() + "resized_{}_steam_banners/".format(keyword)
+    image_data_path = get_data_path() + f"resized_{keyword}_steam_banners/"
 
     return image_data_path
 
@@ -27,10 +24,7 @@ def get_image_extension():
 
 
 def get_label_database_filename(pooling="avg"):
-    if pooling is None:
-        pooling_str = ""
-    else:
-        pooling_str = "." + pooling
+    pooling_str = "" if pooling is None else "." + pooling
 
     label_database_filename = get_data_path() + "label_database{}.npy".format(
         pooling_str,
@@ -40,12 +34,9 @@ def get_label_database_filename(pooling="avg"):
 
 
 def get_unique_games_file_name(pooling="avg"):
-    if pooling is None:
-        pooling_str = ""
-    else:
-        pooling_str = "." + pooling
+    pooling_str = "" if pooling is None else "." + pooling
 
-    unique_games_file_name = get_data_path() + "unique_games{}.json".format(pooling_str)
+    unique_games_file_name = get_data_path() + f"unique_games{pooling_str}.json"
 
     return unique_games_file_name
 
@@ -58,7 +49,7 @@ def save_sim_dict(sim_dict, pooling="avg"):
 
 
 def load_sim_dict_from_disk(pooling="avg"):
-    with open(get_unique_games_file_name(pooling=pooling), "r", encoding="utf8") as f:
+    with open(get_unique_games_file_name(pooling=pooling), encoding="utf8") as f:
         sim_dict = json.load(f)
 
     return sim_dict
