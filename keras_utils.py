@@ -34,7 +34,9 @@ def get_model_for_keras(input_shape, include_top=False, pooling="avg"):
     # Reference: https://github.com/keras-team/keras-applications/blob/master/keras_applications/mobilenet_v3.py
 
     model = MobileNetV3Small(
-        input_shape=input_shape, include_top=include_top, pooling=pooling
+        input_shape=input_shape,
+        include_top=include_top,
+        pooling=pooling,
     )
     return model
 

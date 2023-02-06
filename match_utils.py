@@ -11,7 +11,8 @@ from faiss_utils import get_faiss_search_structure, find_faiss_knn_for_all
 def match_all(use_cosine_similarity=True, pooling="avg", transform_distance=False):
     label_database = np.load(get_label_database_filename(pooling))
     knn = get_faiss_search_structure(
-        embeddings=label_database, use_cosine_similarity=use_cosine_similarity
+        embeddings=label_database,
+        use_cosine_similarity=use_cosine_similarity,
     )
 
     query = label_database

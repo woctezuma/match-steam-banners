@@ -60,7 +60,8 @@ def label_image_for_clip(image, model=None, preprocess=None, normalize_features=
         model = get_model_for_clip()
 
     preprocessed_image = preprocess_image_array_for_model_for_clip(
-        image, preprocess=preprocess
+        image,
+        preprocess=preprocess,
     )
     image_array = preprocessed_image.to(get_device())
 

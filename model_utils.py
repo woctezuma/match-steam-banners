@@ -87,13 +87,17 @@ def load_model(target_model_size=None, include_top=False, pooling="avg", args=No
     input_shape = get_input_shape(target_model_size)
     if get_model_slug_for_clip() == get_my_model_of_choice():
         model = get_model_for_clip(
-            input_shape=input_shape, include_top=include_top, pooling=pooling
+            input_shape=input_shape,
+            include_top=include_top,
+            pooling=pooling,
         )
     elif get_model_slug_for_dino() == get_my_model_of_choice():
         model = get_model_for_dino(args)
     else:
         model = get_model_for_keras(
-            input_shape=input_shape, include_top=include_top, pooling=pooling
+            input_shape=input_shape,
+            include_top=include_top,
+            pooling=pooling,
         )
 
     return model

@@ -16,7 +16,10 @@ from model_utils import (
 
 
 def build_feature_index(
-    is_horizontal_banner=False, resolution=None, apply_flip=False, apply_mirror=False
+    is_horizontal_banner=False,
+    resolution=None,
+    apply_flip=False,
+    apply_mirror=False,
 ):
     pooling = "avg"
     feature_filename = get_label_database_filename(pooling)
@@ -39,8 +42,7 @@ def build_feature_index(
     app_ids = sorted(app_ids, key=int)
     freeze_app_ids(app_ids)
 
-    for (counter, app_id) in enumerate(app_ids):
-
+    for counter, app_id in enumerate(app_ids):
         # Avoid re-computing values of Y_hat which were previously computed and saved to disk, then recently loaded
         if any(Y_hat[counter, :] != 0):
             continue

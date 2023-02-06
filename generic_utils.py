@@ -14,7 +14,12 @@ def get_interpolation_methods():
     return interpolation_methods
 
 
-def load_image(image_filename, color_mode="RGB", target_size=None, interpolation="nearest"):
+def load_image(
+    image_filename,
+    color_mode="RGB",
+    target_size=None,
+    interpolation="nearest",
+):
     interpolation_methods = get_interpolation_methods()
     resample = interpolation_methods[interpolation]
 

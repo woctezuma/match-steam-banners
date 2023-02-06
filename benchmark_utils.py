@@ -10,7 +10,7 @@ def get_top_100_app_ids_file_name():
     current_date = time.strftime(date_format)
 
     top_100_app_ids_file_name = get_data_path() + "{}_top_100_app_ids.txt".format(
-        current_date
+        current_date,
     )
 
     return top_100_app_ids_file_name

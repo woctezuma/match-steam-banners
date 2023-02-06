@@ -41,7 +41,9 @@ def export_app_ids(
 
 
 def export_app_names(
-    app_ids, input_fname="IStoreService.json", out_fname="app_names.json"
+    app_ids,
+    input_fname="IStoreService.json",
+    out_fname="app_names.json",
 ):
     with open(input_fname, "r", encoding="utf8") as f:
         data = json.load(f)
@@ -71,25 +73,34 @@ def export_app_names(
 
 
 def export_matches(
-    num_neighbors=100, use_cosine_similarity=True, out_fname="matches_faiss.npy"
+    num_neighbors=100,
+    use_cosine_similarity=True,
+    out_fname="matches_faiss.npy",
 ):
     embeddings = np.load(get_label_database_filename())
 
     print("(#apps, #features) = {}".format(embeddings.shape))
 
     index = get_faiss_search_structure(
-        embeddings, use_cosine_similarity=use_cosine_similarity
+        embeddings,
+        use_cosine_similarity=use_cosine_similarity,
     )
 
     D, I = find_faiss_knn_for_all(
-        index, embeddings, num_neighbors, use_cosine_similarity=use_cosine_similarity
+        index,
+        embeddings,
+        num_neighbors,
+        use_cosine_similarity=use_cosine_similarity,
     )
 
     # As of January 2021, the largest list index is about ~ 30 k (#apps), so uint16 is ok (max value: ~ 65 k)
     v = I.astype("uint16")
 
     np.save(
-        get_export_folder_name() + out_fname, v, allow_pickle=False, fix_imports=False
+        get_export_folder_name() + out_fname,
+        v,
+        allow_pickle=False,
+        fix_imports=False,
     )
 
     return

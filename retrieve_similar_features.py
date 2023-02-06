@@ -11,21 +11,21 @@ from model_utils import (
     get_target_model_size,
     load_model,
     convert_image_to_features,
-    get_preprocessing_tool
+    get_preprocessing_tool,
 )
 from print_utils import print_ranking_for_app_id
 from steam_spy_utils import load_benchmarked_app_ids, load_game_names_from_steamspy
 
 
 def retrieve_similar_features(
-        query_app_id,
-        knn,
-        target_model_size,
-        keras_model,
-        is_horizontal_banner=False,
-        num_neighbors=10,
-        preprocess=None,
-        use_cosine_similarity=True,
+    query_app_id,
+    knn,
+    target_model_size,
+    keras_model,
+    is_horizontal_banner=False,
+    num_neighbors=10,
+    preprocess=None,
+    use_cosine_similarity=True,
 ):
     image_filename = app_id_to_image_filename(query_app_id, is_horizontal_banner)
     if not Path(image_filename).is_file():
@@ -54,19 +54,20 @@ def retrieve_similar_features(
 
 
 def batch_retrieve_similar_features(
-        query_app_ids=None,
-        use_cosine_similarity=True,
-        is_horizontal_banner=False,
-        pooling="avg",
-        num_neighbors=10,
-        resolution=None,
+    query_app_ids=None,
+    use_cosine_similarity=True,
+    is_horizontal_banner=False,
+    pooling="avg",
+    num_neighbors=10,
+    resolution=None,
 ):
     if query_app_ids is None:
         query_app_ids = load_benchmarked_app_ids()
 
     label_database = np.load(get_label_database_filename(pooling))
     knn = get_faiss_search_structure(
-        embeddings=label_database, use_cosine_similarity=use_cosine_similarity
+        embeddings=label_database,
+        use_cosine_similarity=use_cosine_similarity,
     )
 
     target_model_size = get_target_model_size(resolution=resolution)
@@ -76,7 +77,6 @@ def batch_retrieve_similar_features(
     game_names = load_game_names_from_steamspy()
 
     for query_app_id in query_app_ids:
-
         try:
             reference_app_id_counter = retrieve_similar_features(
                 query_app_id,
@@ -93,7 +93,9 @@ def batch_retrieve_similar_features(
             continue
 
         print_ranking_for_app_id(
-            query_app_id, reference_app_id_counter, game_names=game_names,
+            query_app_id,
+            reference_app_id_counter,
+            game_names=game_names,
         )
 
     return
@@ -101,4 +103,8 @@ def batch_retrieve_similar_features(
 
 if __name__ == "__main__":
     query_app_ids = load_benchmarked_app_ids()
-    batch_retrieve_similar_features(query_app_ids, is_horizontal_banner=False, resolution=None)
+    batch_retrieve_similar_features(
+        query_app_ids,
+        is_horizontal_banner=False,
+        resolution=None,
+    )

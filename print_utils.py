@@ -12,7 +12,9 @@ def get_bb_code_linked_image(app_id):
     image_link_str = '[url={}][img="width:{}px;"]{}[/img][/url]'
 
     bb_code_linked_image = image_link_str.format(
-        get_store_url(app_id), get_default_image_width(), get_banner_url(app_id)
+        get_store_url(app_id),
+        get_default_image_width(),
+        get_banner_url(app_id),
     )
 
     return bb_code_linked_image
@@ -36,7 +38,10 @@ def get_html_linked_image(app_id, app_name=None):
 
 
 def print_ranking_for_app_id(
-    query_app_id, reference_app_id_counter, game_names=None, num_elements_displayed=10,
+    query_app_id,
+    reference_app_id_counter,
+    game_names=None,
+    num_elements_displayed=10,
 ):
     if game_names is None:
         game_names = load_game_names_from_steamspy()

@@ -33,7 +33,7 @@ def get_label_database_filename(pooling="avg"):
         pooling_str = "." + pooling
 
     label_database_filename = get_data_path() + "label_database{}.npy".format(
-        pooling_str
+        pooling_str,
     )
 
     return label_database_filename

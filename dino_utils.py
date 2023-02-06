@@ -83,7 +83,7 @@ def get_parser_args(
             str(avgpool_patchtokens),
             "--feature_style",
             str(feature_style),
-        ]
+        ],
     )
 
     return args
@@ -167,12 +167,13 @@ def get_preprocessing_for_dino():
     preprocess = pth_transforms.Compose(
         [
             pth_transforms.Resize(
-                256, interpolation=pth_transforms.InterpolationMode.BICUBIC
+                256,
+                interpolation=pth_transforms.InterpolationMode.BICUBIC,
             ),
             pth_transforms.CenterCrop(224),
             pth_transforms.ToTensor(),
             pth_transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-        ]
+        ],
     )
 
     return preprocess
@@ -201,7 +202,7 @@ def get_model_for_dino(args=None):
 
     url = get_dino_url(args)
     state_dict = torch.hub.load_state_dict_from_url(
-        url="https://dl.fbaipublicfiles.com/dino/" + url
+        url="https://dl.fbaipublicfiles.com/dino/" + url,
     )
     model.load_state_dict(state_dict, strict=True)
 
@@ -209,7 +210,11 @@ def get_model_for_dino(args=None):
 
 
 def label_image_for_dino(
-    image, model=None, preprocess=None, normalize_features=True, args=None
+    image,
+    model=None,
+    preprocess=None,
+    normalize_features=True,
+    args=None,
 ):
     if args is None:
         args = get_parser_args()
@@ -218,7 +223,8 @@ def label_image_for_dino(
         model = get_model_for_dino(args=args)
 
     preprocessed_image = preprocess_image_array_for_model_for_dino(
-        image, preprocess=preprocess
+        image,
+        preprocess=preprocess,
     )
     image_array = preprocessed_image.to(get_device(), non_blocking=True)
 
@@ -231,7 +237,8 @@ def label_image_for_dino(
         # Reference: https://github.com/facebookresearch/dino/blob/main/eval_linear.py
         with torch.no_grad():
             intermediate_output = model.get_intermediate_layers(
-                image_array, args.n_last_blocks
+                image_array,
+                args.n_last_blocks,
             )
             output = [x[:, 0] for x in intermediate_output]
             if args.avgpool_patchtokens:

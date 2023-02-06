@@ -11,7 +11,8 @@ def load_sim_dict(use_cosine_similarity=True, pooling="avg"):
         sim_dict = load_sim_dict_from_disk(pooling=pooling)
     except FileNotFoundError:
         sim_dict = match_all(
-            use_cosine_similarity=use_cosine_similarity, pooling=pooling
+            use_cosine_similarity=use_cosine_similarity,
+            pooling=pooling,
         )
 
     return sim_dict
@@ -40,7 +41,9 @@ def print_unique_games(sim_dict, unique_app_ids, game_names=None):
         matched_app_id_as_list = [matched_app_id]
 
         print_ranking_for_app_id(
-            query_app_id, matched_app_id_as_list, game_names=game_names
+            query_app_id,
+            matched_app_id_as_list,
+            game_names=game_names,
         )
 
     return
@@ -63,11 +66,13 @@ def print_grid_of_unique_games(unique_app_ids, game_names=None):
 
 def find_unique_games(use_cosine_similarity=True, pooling="avg", num_outputs=250):
     sim_dict = load_sim_dict(
-        use_cosine_similarity=use_cosine_similarity, pooling=pooling
+        use_cosine_similarity=use_cosine_similarity,
+        pooling=pooling,
     )
 
     unique_app_ids = extract_fixed_number_of_unique_games(
-        sim_dict, num_outputs=num_outputs
+        sim_dict,
+        num_outputs=num_outputs,
     )
 
     print_unique_games(sim_dict, unique_app_ids)

@@ -43,8 +43,12 @@ def download_query_image(app_id, is_horizontal_banner=False, output_filename=Non
 if __name__ == "__main__":
     app_id = 1250410  # Microsoft Flight Simulator
     download_query_image(
-        app_id, output_filename="temp_vertical_banner.jpg", is_horizontal_banner=False
+        app_id,
+        output_filename="temp_vertical_banner.jpg",
+        is_horizontal_banner=False,
     )
     download_query_image(
-        app_id, output_filename="temp_horizontal_banner.jpg", is_horizontal_banner=True
+        app_id,
+        output_filename="temp_horizontal_banner.jpg",
+        is_horizontal_banner=True,
     )

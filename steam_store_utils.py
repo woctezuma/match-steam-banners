@@ -30,7 +30,8 @@ def get_banner_url(app_id, is_horizontal_banner=False):
     # Caveat: vertical banners are a recent addition to Steam, and they do not exist for every game!
 
     banner_url = "https://steamcdn-a.akamaihd.net/steam/apps/{}/{}.jpg".format(
-        app_id, get_banner_conventional_name(is_horizontal_banner)
+        app_id,
+        get_banner_conventional_name(is_horizontal_banner),
     )
 
     return banner_url
