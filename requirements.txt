@@ -3,7 +3,7 @@ tf-nightly
 cython==0.29.21
 numpy==1.22.0
 scikit-learn==1.2.1
-steamspypi==1.1.0
+steamspypi==1.1.1
 gamedatacrunch==0.0.3
 Pillow==8.1.0
 torch
