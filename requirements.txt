@@ -1,6 +1,6 @@
 requests==2.25.1
 tf-nightly
-cython==0.29.21
+cython==0.29.33
 numpy==1.22.0
 scikit-learn==0.24.0
 steamspypi==1.1.0
