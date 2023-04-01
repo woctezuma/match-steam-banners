@@ -5,7 +5,7 @@ numpy==1.22.0
 scikit-learn==1.2.1
 steamspypi==1.1.1
 gamedatacrunch==0.0.3
-Pillow==9.4.0
+Pillow==9.5.0
 torch
 torchvision
 ftfy
