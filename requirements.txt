@@ -1,4 +1,4 @@
-requests==2.28.2
+requests==2.31.0
 tf-nightly
 cython==0.29.33
 numpy==1.22.0
