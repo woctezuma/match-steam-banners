@@ -1,7 +1,7 @@
 requests==2.31.0
 tf-nightly
 cython==0.29.36
-numpy==1.22.0
+numpy==1.26.1
 scikit-learn==1.2.1
 steamspypi==1.1.1
 gamedatacrunch==0.0.3
