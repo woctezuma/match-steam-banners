@@ -2,7 +2,7 @@ requests==2.31.0
 tf-nightly
 cython==3.0.11
 numpy==1.26.4
-scikit-learn==1.5.0
+scikit-learn==1.7.1
 steamspypi==1.1.1
 gamedatacrunch==0.0.3
 Pillow==11.1.0
